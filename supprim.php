@@ -1,15 +1,15 @@
 <?php
-try {
-  $bdd = new PDO("mysql:host=localhost; dbname=annuaire; charset=utf8", "root", "root");
-} catch (Exception $e) {
-  die("Erreur : ".$e -> getMessage());
+$base = mysqli_connect("localhost","root","root","annuaire");// je me connecte a ma base
+
+$id = $_POST["id"]; // je recupere mon id
+
+$supp = mysqli_query($base, "DELETE FROM annuaire WHERE `id`=$id");// je supprime l'entrée en fonction de l'id choisie
+if ($supp === FALSE) {
+  echo "l'entrée n'a pas été supprimé";   // si y'a un probleme
+}else{
+
+  header("Location:client.php");// je retourne sur ma page d'annuaire
+  echo "l'entrée a été supprimé";
 }
 
-
-$id = $donnees["id"];
-
-$bdd->exec("DELETE FROM annuaire WHERE id=$id");
-
-header("Location:client.php");
-echo "entrée supprimée";
 ?>

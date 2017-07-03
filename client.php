@@ -16,7 +16,7 @@ try {
   <body>
     <h1>page clients</h1>
     <div class="container">
-      <table>
+      <table border="solid">
         <thead>
           <tr>
             <td>Nom</td>
@@ -37,15 +37,41 @@ try {
                   <td>".$donnees["Prenom"]."</td>
                   <td>".$donnees["Entreprise"]."</td>
                   <td>".$donnees["Date de naissance"]."</td>
+                  <td>".$donnees["Adresse"]."</td>
                   <td>".$donnees["Telephone"]."</td>
-                  <td>".$donnees["Groupe"]."</td>
-                  <td><button id=".$donnees["id"].">supprimer</button></td>
-                  <tr>";
+                  <td>".$donnees["id_Groupe"]."</td>
+                  <td><form action='supprim.php' method='POST'><input type='HIDDEN' name='id' value=".$donnees["id"]."><button type='submit'>supprimer</button></form></td>
+                  </tr>";
           }
            ?>
         </tbody>
         <a href="index.php" type="button">nouvel utilisateur</a>
       </table>
+
+</div>
+<div class="container">
+<h1>Groupes</h1>
+      <table>
+        <thead>
+          <tr>
+            <td>id</td>
+            <td>groupe</td>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+            $reponse = $bdd->query("SELECT * FROM groupe");
+            while ($donnees=$reponse->fetch()){
+              echo "<tr>
+                    <td>".$donnees["id_grp"]."</td>
+                    <td>".$donnees["name_grp"]."</td>
+                    </tr>";
+            }
+           ?>
+        </tbody>
+      </table>
+
+
   </div>
   </body>
 </html>
