@@ -5,9 +5,6 @@ try {
   die("Erreur : ".$e -> getMessage());
 }
 
-SELECT i.id id_annuaire, u.fk_user fk_user_appartenir
-FROM annuaire i, appartenir u
-WHERE u.fake_user = i.id
 
 $nom = $_POST["nom"];
 $prenom = $_POST["prenom"];
@@ -18,7 +15,7 @@ $telephone = $_POST["telephone"];
 $groupe = $_POST["groupe"];
 
 var_dump($groupe);
-$req = $bdd->prepare("INSERT INTO `annuaire`(`id`,`Nom`, `Prenom`, `Entreprise`, `Date de naissance`, `Adresse`, `Telephone`, `Groupe`)
+$req = $bdd->prepare("INSERT INTO `annuaire`(`id`,`Nom`, `Prenom`, `Entreprise`, `Date de naissance`, `Adresse`, `Telephone`, `id_Groupe`)
             VALUES (NULL, :nom, :prenom, :entreprise, :naissance, :adresse, :telephone, :groupe)");
 
 $req->execute([
@@ -31,7 +28,8 @@ $req->execute([
     "groupe" => $groupe
   ]);
 
+$id = $bdd->lastInsertId();
 
- //header("Location:client.php");
+ header("Location:client.php");
  echo "vous avez été enregistré";
 ?>

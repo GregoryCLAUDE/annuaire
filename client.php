@@ -30,7 +30,10 @@ try {
         </thead>
         <tbody>
           <?php
-          $reponse = $bdd->query("SELECT * FROM annuaire");
+          $reponse = $bdd->query("SELECT *
+                                  FROM appartenir
+                                  INNER JOIN annuaire ON appartenir.fk_user=annuaire.id
+                                  INNER JOIN groupe ON appartenir.fk_groupe=groupe.id_grp");
           while ($donnees=$reponse->fetch()) {
             echo "<tr>
                   <td>".$donnees["Nom"]."</td>
@@ -39,7 +42,7 @@ try {
                   <td>".$donnees["Date de naissance"]."</td>
                   <td>".$donnees["Adresse"]."</td>
                   <td>".$donnees["Telephone"]."</td>
-                  <td>".$donnees["id_Groupe"]."</td>
+                  <td>".$donnees["name_grp"]."</td>
                   <td><form action='supprim.php' method='POST'><input type='HIDDEN' name='id' value=".$donnees["id"]."><button type='submit'>supprimer</button></form></td>
                   </tr>";
           }
