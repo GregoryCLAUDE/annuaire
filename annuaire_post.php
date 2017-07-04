@@ -14,9 +14,11 @@ $adresse = $_POST["adresse"];
 $telephone = $_POST["telephone"];
 $groupe = $_POST["groupe"];
 
+
 var_dump($groupe);
-$req = $bdd->prepare("INSERT INTO `annuaire`(`id`,`Nom`, `Prenom`, `Entreprise`, `Date de naissance`, `Adresse`, `Telephone`, `id_Groupe`)
-            VALUES (NULL, :nom, :prenom, :entreprise, :naissance, :adresse, :telephone, :groupe)");
+
+$req = $bdd->prepare("INSERT INTO `annuaire`(`id`,`Nom`, `Prenom`, `Entreprise`, `Date de naissance`, `Adresse`, `Telephone`)
+            VALUES (NULL, :nom, :prenom, :entreprise, :naissance, :adresse, :telephone)");
 
 $req->execute([
     "nom" => $nom,
@@ -25,11 +27,25 @@ $req->execute([
     "naissance" => $naissance,
     "adresse" => $adresse,
     "telephone" => $telephone,
-    "groupe" => $groupe
   ]);
 
-$id = $bdd->lastInsertId();
 
- header("Location:client.php");
+
+
+$id = $bdd->lastInsertId();
+var_dump($id);
+$req = $bdd->prepare("INSERT INTO appartenir (`fk_user`,`fk_groupe`) VALUES (:id, :groupe)");
+foreach($groupe as $valeur)
+{
+  $req->execute([
+    "id"=>$id,
+    "groupe"=>$valeur
+  ]);
+
+}
+
+
+
+header("Location:client.php");
  echo "vous avez été enregistré";
 ?>

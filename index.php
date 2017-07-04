@@ -51,7 +51,7 @@ try {
               <?php
               $reponse = $bdd->query("SELECT * FROM groupe");
               while ($donnees=$reponse -> fetch()){
-                echo "<input type='checkbox' name='groupe' value=".$donnees["id_grp"]."><label>".$donnees['name_grp']."</label>";
+                echo "<input type='checkbox' name='groupe[]' value=".$donnees["id_grp"]."><label>".$donnees['name_grp']."</label>";
               }
               ?>
           </select>

@@ -34,6 +34,7 @@ try {
                                   FROM appartenir
                                   INNER JOIN annuaire ON appartenir.fk_user=annuaire.id
                                   INNER JOIN groupe ON appartenir.fk_groupe=groupe.id_grp");
+
           while ($donnees=$reponse->fetch()) {
             echo "<tr>
                   <td>".$donnees["Nom"]."</td>
