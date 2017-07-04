@@ -25,27 +25,27 @@ try {
       <form action="annuaire_post.php" method="post">
         <p>
           <label for="nom">Nom</label>
-          <input type="text" name="nom" id="nom" value="bonno">
+          <input type="text" name="nom" id="nom" value="">
         </p>
         <p>
           <label for="prenom">Prenom</label>
-          <input type="text" name="prenom" id="prenom" value="jean">
+          <input type="text" name="prenom" id="prenom" value="">
         </p>
         <p>
           <label for="entreprise">Entreprise</label>
-          <input type="text" name="entreprise" id="entreprise" value="serrano">
+          <input type="text" name="entreprise" id="entreprise" value="">
         </p>
         <p>
           <label for="naissance">Date de naissance</label>
-          <input type="date" name="naissance" id="naissance" value="2012-12-12">
+          <input type="date" name="naissance" id="naissance" value="">
         </p>
         <p>
           <label for="adresse">Adresse</label>
-          <input type="text" name="adresse" id="adresse" value="rue du boucher">
+          <input type="text" name="adresse" id="adresse" value="">
         </p>
         <p>
           <label for="telephone">telephone</label>
-          <input type="int" name="telephone" id="telephone" value="12345678">
+          <input type="int" name="telephone" id="telephone" value="">
         </p>
         <p>
               <?php
@@ -59,6 +59,11 @@ try {
         <button type="submit" name="button">s'inscrire</button>
 
       </form>
+      <form class="" action="new_group.php" method="post">
+      <label for="ngroup">nouveau groupe</label>
+      <input type="text" id="ngroup" name="ngroup">
+      <button type="submit" name="button">créer</button>
+    </form>
       <a href="client.php"> vers clients</a>
     </tbody>
   </body>

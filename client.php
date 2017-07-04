@@ -36,6 +36,7 @@ try {
                                   INNER JOIN groupe ON appartenir.fk_groupe=groupe.id_grp");
 
           while ($donnees=$reponse->fetch()) {
+
             echo "<tr>
                   <td>".$donnees["Nom"]."</td>
                   <td>".$donnees["Prenom"]."</td>
@@ -55,6 +56,7 @@ try {
 </div>
 <div class="container">
 <h1>Groupes</h1>
+<a href="liste.php">liste de groupes</a>
       <table>
         <thead>
           <tr>
