@@ -1,7 +1,7 @@
 <?php
 $base = mysqli_connect("localhost","root","root","annuaire");// je me connecte a ma base
 
-$id = $_POST["id"]; // je recupere mon id
+$id = $_GET["id"]; // je recupere mon id
 
 $supp = mysqli_query($base, "DELETE FROM appartenir WHERE `fk_user`=$id" );// je supprime le lien
 $del = mysqli_query($base, "DELETE FROM annuaire WHERE `id`= $id");// je ssuprime de la base de donnée des contacts

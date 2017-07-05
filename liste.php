@@ -12,6 +12,7 @@ try {
      <title>liste des groupes</title>
    </head>
    <body>
+     <a href="client.php">vers les clients</a>
      <?php
       $groupe =$bdd->query(
         "SELECT *
