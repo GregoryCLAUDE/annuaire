@@ -30,13 +30,8 @@ try {
         </thead>
         <tbody>
           <?php
-          $reponse = $bdd->query("SELECT *
-                                  FROM appartenir
-                                  INNER JOIN annuaire ON appartenir.fk_user=annuaire.id
-                                  INNER JOIN groupe ON appartenir.fk_groupe=groupe.id_grp");
-
+          $reponse = $bdd->query("SELECT * FROM annuaire");
           while ($donnees=$reponse->fetch()) {
-
             echo "<tr>
                   <td>".$donnees["Nom"]."</td>
                   <td>".$donnees["Prenom"]."</td>
@@ -44,7 +39,7 @@ try {
                   <td>".$donnees["Date de naissance"]."</td>
                   <td>".$donnees["Adresse"]."</td>
                   <td>".$donnees["Telephone"]."</td>
-                  <td>".$donnees["name_grp"]."</td>
+                  <td>".$donnees["Groupe"]."</td>
                   <td><form action='supprim.php' method='POST'><input type='HIDDEN' name='id' value=".$donnees["id"]."><button type='submit'>supprimer</button></form></td>
                   </tr>";
           }
@@ -52,12 +47,10 @@ try {
         </tbody>
         <a href="index.php" type="button">nouvel utilisateur</a>
       </table>
-
 </div>
 <div class="container">
-<h1>Groupes</h1>
-<a href="liste.php">liste de groupes</a>
-      <table>
+      <a href="liste.php">vers les liste par groupe</a>
+      <table border="solid">
         <thead>
           <tr>
             <td>id</td>
@@ -76,8 +69,6 @@ try {
            ?>
         </tbody>
       </table>
-
-
-  </div>
+    </div>
   </body>
 </html>

@@ -13,123 +13,46 @@ try {
    </head>
    <body>
      <?php
-      $reponse =$bdd->query(
+      $groupe =$bdd->query(
         "SELECT *
-        FROM appartenir
-        INNER JOIN annuaire ON appartenir.fk_user=annuaire.id
-        INNER JOIN groupe ON appartenir.fk_groupe=groupe.id_grp
-        WHERE fk_groupe = 1");
+        FROM groupe"
+      );
 
-        while ($donnees=$reponse->fetch()){
-          var_dump($donnees["Nom"]);
+        while ($grp = $groupe->fetch()){
+          echo "
+                <h2>".$grp["name_grp"]."</h2>
+                <table border='solid'>
+                  <thead>
+                    <tr>
+                      <td>Nom</td>
+                      <td>Prenom</td>
+                      <td>Telephone</td>
+                    </tr>
+                    <tbody>
+                  ";
+            $reponse =$bdd->query(
+              "SELECT *
+              FROM appartenir
+              INNER JOIN annuaire ON appartenir.fk_user=annuaire.id
+              INNER JOIN groupe ON appartenir.fk_groupe=groupe.id_grp
+              ");
+              while ($donnees=$reponse->fetch()){
+                    if ($grp["id_grp"]==$donnees["fk_groupe"]) {
+                      echo "
+                      <tr>
+                      <td>".$donnees["Nom"]."</td>
+                      <td>".$donnees["Prenom"]."</td>
+                      <td>".$donnees["Telephone"]."</td>
+                      </tr>
+                      ";
+                    }
 
-          echo "<h3>".$donnees['name_grp']."</h3>
-          <table>
-            <thead>
-              <tr>
-              <td>Nom</td>
-              <td>Prenom</td>
-              <td>Telephone</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>".$donnees["Nom"]."</td>
-                <td>".$donnees["Prenom"]."</td>
-                <td>".$donnees["Telephone"]."</td>
-              </tr>
-            </tbody>
-          </table>";
-
+                  }
+                  echo "
+                  </tbody>
+                  </table>";
         }
       ?>
-      <!-- <?php
-      $reponse =$bdd->query(
-        "SELECT *
-        FROM appartenir
-        INNER JOIN annuaire ON appartenir.fk_user=annuaire.id
-        INNER JOIN groupe ON appartenir.fk_groupe=groupe.id_grp
-        WHERE id_grp = 2");
-
-        while ($donnees=$reponse->fetch()){
-          echo "<h3>".$donnees['name_grp']."</h3>
-          <table>
-            <thead>
-              <tr>
-              <td>Nom</td>
-              <td>Prenom</td>
-              <td>Telephone</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>".$donnees["Nom"]."</td>
-                <td>".$donnees["Prenom"]."</td>
-                <td>".$donnees["Telephone"]."</td>
-              </tr>
-            </tbody>
-          </table>";
-        }
-       ?>
-       <?php
-       $reponse =$bdd->query(
-         "SELECT *
-         FROM appartenir
-         INNER JOIN annuaire ON appartenir.fk_user=annuaire.id
-         INNER JOIN groupe ON appartenir.fk_groupe=groupe.id_grp
-         WHERE id_grp = 3");
-
-         while ($donnees=$reponse->fetch()){
-           echo "<h3>".$donnees['name_grp']."</h3>
-           <table>
-             <thead>
-               <tr>
-               <td>Nom</td>
-               <td>Prenom</td>
-               <td>Telephone</td>
-               </tr>
-             </thead>
-             <tbody>
-               <tr>
-                 <td>".$donnees["Nom"]."</td>
-                 <td>".$donnees["Prenom"]."</td>
-                 <td>".$donnees["Telephone"]."</td>
-               </tr>
-             </tbody>
-           </table>";
-
-         }
-        ?>
-        <?php
-        $reponse =$bdd->query(
-          "SELECT *
-          FROM appartenir
-          INNER JOIN annuaire ON appartenir.fk_user=annuaire.id
-          INNER JOIN groupe ON appartenir.fk_groupe=groupe.id_grp
-          WHERE id_grp = 5");
-
-          while ($donnees=$reponse->fetch()){
-            echo "<h3>".$donnees['name_grp']."</h3>
-            <table>
-              <thead>
-                <tr>
-                <td>Nom</td>
-                <td>Prenom</td>
-                <td>Telephone</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>".$donnees["Nom"]."</td>
-                  <td>".$donnees["Prenom"]."</td>
-                  <td>".$donnees["Telephone"]."</td>
-                </tr>
-              </tbody>
-            </table>";
-
-          }
-         ?> -->
-
 
    </body>
  </html>
